@@ -194,6 +194,7 @@ def parse_cmdline_args():
     epilog = ("Mackup modes of action:\n"
               " - backup: sync your conf files to your synced storage, use"
               " this the 1st time you use Mackup.\n"
+              " - link: link the conf files from synced storage to your home\n"
               " - restore: link the conf files already in your synced storage"
               " on your system, use it on any new system you use.\n"
               " - uninstall: reset everything as it was before using Mackup.\n"
@@ -212,6 +213,7 @@ def parse_cmdline_args():
                         choices=[constants.BACKUP_MODE,
                                  constants.RESTORE_MODE,
                                  constants.UNINSTALL_MODE,
+                                 constants.LINK_MODE,
                                  constants.LIST_MODE],
                         help=help_msg)
 

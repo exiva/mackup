@@ -14,6 +14,9 @@ RESTORE_MODE = 'restore'
 # Mode used to remove Mackup and reset and config file
 UNINSTALL_MODE = 'uninstall'
 
+# Create links from backup for syncing
+LINK_MODE = 'link'
+
 # Support platforms
 PLATFORM_DARWIN = 'Darwin'
 PLATFORM_LINUX = 'Linux'

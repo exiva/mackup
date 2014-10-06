@@ -81,16 +81,39 @@ class ApplicationProfile(object):
                         utils.delete(mackup_filepath)
                         # Copy the file
                         utils.copy(filepath, mackup_filepath)
+                        # Moving the linking and deleting to a new function
                         # Delete the file in the home
-                        utils.delete(filepath)
+                        # utils.delete(filepath)
                         # Link the backuped file to its original place
-                        utils.link(mackup_filepath, filepath)
+                        # utils.link(mackup_filepath, filepath)
                 else:
                     # Copy the file
                     utils.copy(filepath, mackup_filepath)
                     # Delete the file in the home
-                    utils.delete(filepath)
+                    # utils.delete(filepath)
                     # Link the backuped file to its original place
+                    # utils.link(mackup_filepath, filepath)
+
+    def link(self):
+        """ Link the files from backup and delete from the home
+        """
+        for filename in self.files:
+            mackup_filepath = os.path.join(self.mackup.mackup_folder, filename)
+            filepath = os.path.join(os.envrion['HOME'], filename)
+
+            if (os.path.isfile(mackup_filepath)
+                or os.path.isdir(mackup_filepath)):
+
+                if os.path.exists(filepath):
+                    # Delete original file from home directory
+                    print "Deleting {} from your home".format(filename)
+
+                    utils.delete(filepath)
+
+                    # Create symlink from backup to home
+
+                    print "Linking {} from backup to home".format(filename)
+
                     utils.link(mackup_filepath, filepath)
 
     def restore(self):

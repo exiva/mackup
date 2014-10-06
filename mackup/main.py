@@ -23,6 +23,7 @@ from .application import ApplicationProfile
 from .constants import (BACKUP_MODE,
                         RESTORE_MODE,
                         UNINSTALL_MODE,
+                        LINK_MODE,
                         LIST_MODE,
                         VERSION)
 from .mackup import Mackup
@@ -54,6 +55,16 @@ def main():
         for app_name in app_db.get_app_names():
             app = ApplicationProfile(mckp, app_db.get_files(app_name))
             app.restore()
+
+    elif args.mode == LINK_MODE:
+        mckp.check_for_usable_restore_env()
+
+        if utils.confirm("You are going to link your mackup backup"
+                         "to your home directory.\nAre you sure? ")
+
+            for app_name in app_db.get_app.names():
+                app= ApplicationProfile(mckp, app_db.get_files(app_name))
+                app.link()
 
     elif args.mode == UNINSTALL_MODE:
         # Check the env where the command is being run
